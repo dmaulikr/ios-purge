@@ -26,12 +26,21 @@ class GameScene: SKScene {
         self.addChild(ownPlayer)
         self.addChild(opponentPlayer)
         ConnectionManager.start()
+        ConnectionManager.onConnect { _ in
+         println("ON connect")
+        }
+        ConnectionManager.onDisconnect { _ in
+            println("ON disconnect")
+        }
+        setupMultipeerEventHandlers()
+        println(ConnectionManager.otherPlayers.count)
+        
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
-
+        println("Trying to send an Event")
         let attr = MPCAttributedString(attributedString: NSAttributedString(string: "What is this"))
         ConnectionManager.sendEvent(Event.Answer, object: ["Aashish": attr] , toPeers: ConnectionManager.allPlayers)
     }
