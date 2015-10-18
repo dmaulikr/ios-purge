@@ -10,13 +10,25 @@ import SpriteKit
 
 let playerCategory: UInt32 = 0x1 << 0
 let bulletCategory: UInt32 = 0x1 << 1
+enum Rotate: Int {
+    case ClockWise = 0
+    case AntiClockWise = 1
+}
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+enum ValueType: String {
+    case Rotate = "R"
+    case Move = "M"
+    case Shoot = "S"
+    case Collide = "C"
+}
+
+class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
     
     //Nodes
     var ownPlayer: Player!
     var opponentPlayer: Player!
     private var explosionTextures: [AnyObject]!
+    var playerId = "1"
     
     //Player Names
     var playerAName = "A"
@@ -25,6 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        addPubnub()
         loadExplosion()
         physicsWorld.contactDelegate = self
         ownPlayer = createPlayerAt(CGPointMake(200, 200))
@@ -39,9 +52,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in (touches as! Set<UITouch>) {
             let location = touch.locationInNode(self)
             ownPlayer.shootBullet()
-            }
+            client.publish("{\"id\":\"\(playerId)\",\"t\":\"S\",\"v\":\"0\"}", toChannel: "Channel-m5odp0zna", compressed: false, withCompletion: nil)
+        }
     }
-   
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
@@ -65,6 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //MARK- Movement functions
     func moveOwnPlayer(direction: PlayerMovement) {
+        client.publish("{\"id\":\"\(playerId)\",\"t\":\"M\",\"v\":\"\(direction.rawValue)\"}", toChannel: "Channel-m5odp0zna", compressed: false, withCompletion: nil)
         ownPlayer.move(direction)
     }
     
@@ -82,7 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let texture = explosionAtlas.textureNamed(name as! String)
             explosionTextures.append(texture)
         }
-
+        
     }
     
     func playExplosion(location: CGPoint) {
@@ -90,7 +105,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         explosion.zPosition = 1
         explosion.xScale = 0.6;
         explosion.yScale = 0.6;
-
+        
         explosion.position = location
         addChild(explosion)
         let explosionAction = SKAction.animateWithTextures(explosionTextures, timePerFrame: 0.03)
@@ -110,6 +125,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 secondBody.node?.removeFromParent()
             }
             playExplosion(contact.contactPoint)
+        }
+    }
+    
+    //MARK:- Pubnub
+    
+    var client : PubNub!
+    var config : PNConfiguration!
+    
+    func addPubnub() {
+        config = PNConfiguration(publishKey: "pub-c-85f450ad-16a7-4434-b5b0-fef7c11e6839", subscribeKey: "sub-c-40615bee-7599-11e5-9611-02ee2ddab7fe")
+        client = PubNub.clientWithConfiguration(config)
+        client.subscribeToChannels(["Channel-m5odp0zna"], withPresence: false)
+        client.publish("Swift+PubNub!", toChannel: "Channel-m5odp0zna", compressed: false, withCompletion: nil)
+        client.addListener(self)
+    }
+    
+    
+    func client(client: PubNub!, didReceiveMessage message: PNMessageResult!) {
+        if let playerId: String = message?.data?.message["id"] as? String{
+            if playerId != self.playerId {
+                if let type: String = message?.data?.message["t"] as? String {
+                    if(type=="M") {
+                        if let value: Int = message?.data?.message["v"] as? Int {
+                            opponentPlayer.move(PlayerMovement(rawValue: value)!)
+                        }
+                    }
+                }
+            }
         }
     }
 }

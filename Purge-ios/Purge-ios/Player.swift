@@ -8,8 +8,8 @@
 
 import SpriteKit
 
-enum PlayerMovement {
-    case Left, Right, Up, Down
+enum PlayerMovement: Int {
+    case Right = 0, Down, Left, Up
 }
 
 class Player: SKSpriteNode {
@@ -62,5 +62,6 @@ class Player: SKSpriteNode {
             playerCategory | bulletCategory
         self.parent?.addChild(bullet)
         bullet.fire()
+        
     }
 }
