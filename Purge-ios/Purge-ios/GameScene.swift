@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Nodes
     var ownPlayer: Player!
@@ -21,6 +21,7 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        physicsWorld.contactDelegate = self
         ownPlayer = createPlayerAt(CGPointMake(200, 200))
         opponentPlayer = createPlayerAt(CGPointMake(200, 400))
         self.addChild(ownPlayer)
@@ -43,10 +44,14 @@ class GameScene: SKScene {
     //MARK- Spawn functions
     func createPlayerAt(location: CGPoint) -> Player{
         let sprite = Player(imageNamed:"Spaceship")
+        sprite.name = "Player"
         sprite.xScale = 0.2
         sprite.yScale = 0.2
         sprite.position = location
-        
+        sprite.physicsBody = SKPhysicsBody(rectangleOfSize: sprite.size)
+        sprite.physicsBody!.affectedByGravity = false
+        sprite.physicsBody!.usesPreciseCollisionDetection = true
+        sprite.physicsBody!.contactTestBitMask = 2
         return sprite;
     }
     
@@ -57,5 +62,21 @@ class GameScene: SKScene {
     
     func rotateOwnPlayer(clockwise: Bool) {
         ownPlayer.rotate(clockwise)
+    }
+    
+    //MARK:- Explosion
+    
+    //MARK:- Collisions
+    func didBeginContact(contact: SKPhysicsContact) {
+        let firstBody = contact.bodyA
+        let secondBody = contact.bodyA
+        if(firstBody.node?.name != secondBody.node?.name) {
+            if(firstBody.node?.name == "Bullet") {
+                firstBody.node?.removeFromParent()
+            }
+            else {
+                secondBody.node?.removeFromParent()
+            }
+        }
     }
 }

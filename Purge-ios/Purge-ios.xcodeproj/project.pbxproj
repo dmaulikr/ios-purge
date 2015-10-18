@@ -17,6 +17,7 @@
 		19F1F5B51BD3920A004ED6F6 /* Purge_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1F5B41BD3920A004ED6F6 /* Purge_iosTests.swift */; };
 		19F1F5C01BD39253004ED6F6 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1F5BF1BD39253004ED6F6 /* Player.swift */; };
 		19F1F5C21BD3A40A004ED6F6 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1F5C11BD3A40A004ED6F6 /* Bullet.swift */; };
+		19F1F5C81BD3BCD6004ED6F6 /* EXPLOSION.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 19F1F5C71BD3BCD6004ED6F6 /* EXPLOSION.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		19F1F5B41BD3920A004ED6F6 /* Purge_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purge_iosTests.swift; sourceTree = "<group>"; };
 		19F1F5BF1BD39253004ED6F6 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		19F1F5C11BD3A40A004ED6F6 /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		19F1F5C71BD3BCD6004ED6F6 /* EXPLOSION.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EXPLOSION.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		19F1F5971BD3920A004ED6F6 /* Purge-ios */ = {
 			isa = PBXGroup;
 			children = (
+				19F1F5C71BD3BCD6004ED6F6 /* EXPLOSION.atlas */,
 				19F1F5BE1BD39238004ED6F6 /* Nodes */,
 				19F1F59A1BD3920A004ED6F6 /* AppDelegate.swift */,
 				19F1F59C1BD3920A004ED6F6 /* GameScene.sks */,
@@ -214,6 +217,7 @@
 			files = (
 				19F1F5A91BD3920A004ED6F6 /* LaunchScreen.xib in Resources */,
 				19F1F5A61BD3920A004ED6F6 /* Images.xcassets in Resources */,
+				19F1F5C81BD3BCD6004ED6F6 /* EXPLOSION.atlas in Resources */,
 				19F1F59D1BD3920A004ED6F6 /* GameScene.sks in Resources */,
 				19F1F5A41BD3920A004ED6F6 /* Main.storyboard in Resources */,
 			);
@@ -435,6 +439,7 @@
 				19F1F5BA1BD3920A004ED6F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19F1F5BB1BD3920A004ED6F6 /* Build configuration list for PBXNativeTarget "Purge-iosTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +448,7 @@
 				19F1F5BD1BD3920A004ED6F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
