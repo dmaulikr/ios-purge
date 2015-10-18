@@ -48,12 +48,12 @@ class Player: SKSpriteNode {
         runAction(action)
     }
     
-    func shootBullet() {
+    func shootBullet(playerId: String) {
         let bullet = Bullet(imageNamed: "laser")
         bullet.zRotation = zRotation
         bullet.position = position//CGPointMake(position.x - size.width * sin(zRotation) + 10 , position.x + size.height * cos(zRotation) + 10)
         bullet.name = "Bullet"
-        bullet.playerName = playerName
+        bullet.playerName = playerId
         bullet.size = CGSizeMake(20, 40)
         bullet.physicsBody = SKPhysicsBody(rectangleOfSize: bullet.size)
         bullet.physicsBody!.affectedByGravity = false

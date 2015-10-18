@@ -40,7 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
     //Nodes
     var ownPlayer: Player!
     var opponentPlayer: Player!
-    private var explosionTextures: [AnyObject]!
+    private var explosionTextures: [SKTexture]!
     var playerId = "1"
     
     //Player Names
@@ -55,6 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
         physicsWorld.contactDelegate = self
         ownPlayer = createPlayerAt(CGPointMake(100, 200))
         opponentPlayer = createPlayerAt(CGPointMake(200, 200))
+        opponentPlayer.playerName = "2"
         self.addChild(ownPlayer)
         self.addChild(opponentPlayer)
     }
@@ -64,7 +65,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
         
         for touch in (touches as! Set<UITouch>) {
             let location = touch.locationInNode(self)
-            ownPlayer.shootBullet()
+            ownPlayer.shootBullet("1")
             client.publish("{\"id\":\"\(playerId)\",\"t\":\"S\",\"v\":\"0\"}", toChannel: "Channel-m5odp0zna", compressed: false, withCompletion: nil)
         }
     }
@@ -115,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
     }
     
     func playExplosion(location: CGPoint) {
-        let explosion = SKSpriteNode(texture: explosionTextures![0] as! SKTexture)
+        let explosion = SKSpriteNode(texture: explosionTextures![0] as SKTexture)
         explosion.zPosition = 1
         explosion.xScale = 0.6;
         explosion.yScale = 0.6;
@@ -195,7 +196,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
                     }
                     if(type=="S") {
                         if let value: String = dict?["v"] {
-                            opponentPlayer.shootBullet()
+                            opponentPlayer.shootBullet("2")
                         }
                     }
                     if(type=="R") {
