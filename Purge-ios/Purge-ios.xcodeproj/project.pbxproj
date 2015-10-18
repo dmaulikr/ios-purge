@@ -15,6 +15,7 @@
 		19F1F5A61BD3920A004ED6F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19F1F5A51BD3920A004ED6F6 /* Images.xcassets */; };
 		19F1F5A91BD3920A004ED6F6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19F1F5A71BD3920A004ED6F6 /* LaunchScreen.xib */; };
 		19F1F5B51BD3920A004ED6F6 /* Purge_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1F5B41BD3920A004ED6F6 /* Purge_iosTests.swift */; };
+		19F1F5C01BD39253004ED6F6 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1F5BF1BD39253004ED6F6 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		19F1F5AE1BD3920A004ED6F6 /* Purge-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Purge-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19F1F5B31BD3920A004ED6F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19F1F5B41BD3920A004ED6F6 /* Purge_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purge_iosTests.swift; sourceTree = "<group>"; };
+		19F1F5BF1BD39253004ED6F6 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		19F1F5971BD3920A004ED6F6 /* Purge-ios */ = {
 			isa = PBXGroup;
 			children = (
+				19F1F5BE1BD39238004ED6F6 /* Nodes */,
 				19F1F59A1BD3920A004ED6F6 /* AppDelegate.swift */,
 				19F1F59C1BD3920A004ED6F6 /* GameScene.sks */,
 				19F1F59E1BD3920A004ED6F6 /* GameScene.swift */,
@@ -116,6 +119,14 @@
 				19F1F5B31BD3920A004ED6F6 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		19F1F5BE1BD39238004ED6F6 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				19F1F5BF1BD39253004ED6F6 /* Player.swift */,
+			);
+			name = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19F1F5C01BD39253004ED6F6 /* Player.swift in Sources */,
 				19F1F59F1BD3920A004ED6F6 /* GameScene.swift in Sources */,
 				19F1F5A11BD3920A004ED6F6 /* GameViewController.swift in Sources */,
 				19F1F59B1BD3920A004ED6F6 /* AppDelegate.swift in Sources */,
