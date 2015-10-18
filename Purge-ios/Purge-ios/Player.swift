@@ -46,4 +46,13 @@ class Player: SKSpriteNode {
         let action = SKAction.rotateByAngle(angle, duration: playerMovementUnitTime)
         runAction(action)
     }
+    
+    func shootBullet() {
+        let bullet = Bullet(imageNamed: "laser")
+        bullet.zRotation = zRotation
+        bullet.position = position
+        bullet.size = CGSizeMake(20, 40)
+        bullet.fire()
+        self.parent?.addChild(bullet)
+    }
 }

@@ -10,9 +10,9 @@ import SpriteKit
 
 class Bullet: SKSpriteNode {
     let bulletMovementUnitTime = 0.2
-    let bulletMovementDistance: CGFloat = 10
+    let bulletMovementDistance: CGFloat = 50
 
     func fire() {
-        runAction(SKAction.repeatActionForever(SKAction.moveBy(CGVectorMake(cos(zRotation), sin(zRotation)), duration: bulletMovementUnitTime)))
+        runAction(SKAction.repeatActionForever( SKAction.moveByX(-bulletMovementDistance * sin(zRotation), y: bulletMovementDistance * cos(zRotation), duration: bulletMovementUnitTime)))
     }
 }

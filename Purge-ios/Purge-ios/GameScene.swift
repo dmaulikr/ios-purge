@@ -32,8 +32,7 @@ class GameScene: SKScene {
         
         for touch in (touches as! Set<UITouch>) {
             let location = touch.locationInNode(self)
-            ownPlayer = createPlayerAt(location)
-            addChild(ownPlayer)
+            ownPlayer.shootBullet()
             }
     }
    
