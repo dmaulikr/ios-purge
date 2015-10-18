@@ -16,6 +16,7 @@
 		19E26B5B1BD38A2000FE0FF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19E26B5A1BD38A2000FE0FF1 /* Images.xcassets */; };
 		19E26B5E1BD38A2000FE0FF1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19E26B5C1BD38A2000FE0FF1 /* LaunchScreen.xib */; };
 		19E26B6A1BD38A2000FE0FF1 /* Purge_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E26B691BD38A2000FE0FF1 /* Purge_iosTests.m */; };
+		19F0C3A31BD38C6200556AC2 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F0C3A21BD38C6200556AC2 /* Player.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		19E26B631BD38A2000FE0FF1 /* Purge-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Purge-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E26B681BD38A2000FE0FF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19E26B691BD38A2000FE0FF1 /* Purge_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Purge_iosTests.m; sourceTree = "<group>"; };
+		19F0C3A11BD38C6200556AC2 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		19F0C3A21BD38C6200556AC2 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,7 @@
 				19E26B5A1BD38A2000FE0FF1 /* Images.xcassets */,
 				19E26B5C1BD38A2000FE0FF1 /* LaunchScreen.xib */,
 				19E26B481BD38A2000FE0FF1 /* Supporting Files */,
+				19F0C3A41BD38C6A00556AC2 /* Nodes */,
 			);
 			path = "Purge-ios";
 			sourceTree = "<group>";
@@ -125,6 +129,15 @@
 				19E26B681BD38A2000FE0FF1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		19F0C3A41BD38C6A00556AC2 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				19F0C3A11BD38C6200556AC2 /* Player.h */,
+				19F0C3A21BD38C6200556AC2 /* Player.m */,
+			);
+			name = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +245,7 @@
 				19E26B4E1BD38A2000FE0FF1 /* AppDelegate.m in Sources */,
 				19E26B511BD38A2000FE0FF1 /* GameScene.m in Sources */,
 				19E26B4B1BD38A2000FE0FF1 /* main.m in Sources */,
+				19F0C3A31BD38C6200556AC2 /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +442,7 @@
 				19E26B6F1BD38A2000FE0FF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19E26B701BD38A2000FE0FF1 /* Build configuration list for PBXNativeTarget "Purge-iosTests" */ = {
 			isa = XCConfigurationList;
@@ -436,6 +451,7 @@
 				19E26B721BD38A2000FE0FF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
