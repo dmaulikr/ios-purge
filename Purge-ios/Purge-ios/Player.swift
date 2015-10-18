@@ -21,19 +21,19 @@ class Player: SKSpriteNode {
         var action: SKAction!
         switch(direction) {
         case .Up:
-            action = SKAction.moveByX(CGFloat(0), y: playerMovementDistance, duration: playerMovementUnitTime)
+            action = SKAction.moveByX(-playerMovementDistance * sin(zRotation), y: playerMovementDistance * cos(zRotation), duration: playerMovementUnitTime)
             runAction(action)
         
         case .Down:
-            action = SKAction.moveByX(CGFloat(0), y: -playerMovementDistance, duration: playerMovementUnitTime)
+            action = SKAction.moveByX(playerMovementDistance * sin(zRotation), y: -playerMovementDistance * cos(zRotation), duration: playerMovementUnitTime)
             runAction(action)
             
         case .Left:
-            action = SKAction.moveByX(-playerMovementDistance, y:CGFloat(0) , duration: playerMovementUnitTime)
+            action = SKAction.moveByX(-playerMovementDistance * cos(zRotation), y: -playerMovementDistance * sin(zRotation), duration: playerMovementUnitTime)
             runAction(action)
             
         case .Right:
-            action = SKAction.moveByX(playerMovementDistance, y:CGFloat(0) , duration: playerMovementUnitTime)
+            action = SKAction.moveByX(playerMovementDistance * cos(zRotation), y: playerMovementDistance * sin(zRotation), duration: playerMovementUnitTime)
             runAction(action)
             
         default:
