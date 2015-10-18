@@ -50,14 +50,17 @@ class Player: SKSpriteNode {
     func shootBullet() {
         let bullet = Bullet(imageNamed: "laser")
         bullet.zRotation = zRotation
-        bullet.position = position
+        bullet.position = CGPointMake(position.x - size.width * sin(zRotation) + 10 , position.x + size.height * cos(zRotation) + 10)
         bullet.name = "Bullet"
         bullet.size = CGSizeMake(20, 40)
         bullet.physicsBody = SKPhysicsBody(rectangleOfSize: bullet.size)
         bullet.physicsBody!.affectedByGravity = false
         bullet.physicsBody!.usesPreciseCollisionDetection = true
-        bullet.physicsBody!.contactTestBitMask = 1
-        bullet.fire()
+        bullet.physicsBody?.categoryBitMask = playerCategory
+        bullet.physicsBody?.collisionBitMask = playerCategory | bulletCategory
+        bullet.physicsBody?.contactTestBitMask =
+            playerCategory | bulletCategory
         self.parent?.addChild(bullet)
+        bullet.fire()
     }
 }

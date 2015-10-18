@@ -8,11 +8,15 @@
 
 import SpriteKit
 
+let playerCategory: UInt32 = 0x1 << 0
+let bulletCategory: UInt32 = 0x1 << 1
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Nodes
     var ownPlayer: Player!
     var opponentPlayer: Player!
+    private var explosionTextures: [AnyObject]!
     
     //Player Names
     var playerAName = "A"
@@ -21,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        loadExplosion()
         physicsWorld.contactDelegate = self
         ownPlayer = createPlayerAt(CGPointMake(200, 200))
         opponentPlayer = createPlayerAt(CGPointMake(200, 400))
@@ -51,8 +56,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sprite.physicsBody = SKPhysicsBody(rectangleOfSize: sprite.size)
         sprite.physicsBody!.affectedByGravity = false
         sprite.physicsBody!.usesPreciseCollisionDetection = true
-        sprite.physicsBody!.contactTestBitMask = 2
-        return sprite;
+        sprite.physicsBody?.categoryBitMask = playerCategory
+        sprite.physicsBody?.collisionBitMask = playerCategory | bulletCategory
+        sprite.physicsBody?.contactTestBitMask =
+            playerCategory | bulletCategory
+        return sprite
     }
     
     //MARK- Movement functions
@@ -66,10 +74,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //MARK:- Explosion
     
+    func loadExplosion() {
+        let explosionAtlas = SKTextureAtlas(named: "EXPLOSION")
+        var textureNames = explosionAtlas.textureNames
+        self.explosionTextures = []
+        for name in textureNames {
+            let texture = explosionAtlas.textureNamed(name as! String)
+            explosionTextures.append(texture)
+        }
+
+    }
+    
+    func playExplosion(location: CGPoint) {
+        let explosion = SKSpriteNode(texture: explosionTextures![0] as! SKTexture)
+        explosion.zPosition = 1
+        explosion.xScale = 0.6;
+        explosion.yScale = 0.6;
+
+        explosion.position = location
+        addChild(explosion)
+        let explosionAction = SKAction.animateWithTextures(explosionTextures, timePerFrame: 0.03)
+        let remove = SKAction.removeFromParent()
+        explosion.runAction(SKAction.sequence([explosionAction,remove]))
+    }
+    
     //MARK:- Collisions
     func didBeginContact(contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
-        let secondBody = contact.bodyA
+        let secondBody = contact.bodyB
         if(firstBody.node?.name != secondBody.node?.name) {
             if(firstBody.node?.name == "Bullet") {
                 firstBody.node?.removeFromParent()
@@ -77,6 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             else {
                 secondBody.node?.removeFromParent()
             }
+            playExplosion(contact.contactPoint)
         }
     }
 }
