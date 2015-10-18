@@ -43,7 +43,7 @@ class GameViewController: UIViewController {
             
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
-            
+            scene.size = UIScreen.mainScreen().bounds.size
             skView.presentScene(scene)
             self.scene = scene
         }
@@ -87,5 +87,7 @@ class GameViewController: UIViewController {
     @IBAction func moveLeftTapped(sender: AnyObject) {
         scene?.moveOwnPlayer(.Left)
     }
+    
+    //MARK:- Data Receiving Methods
     
 }

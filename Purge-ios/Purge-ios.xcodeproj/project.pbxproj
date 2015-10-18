@@ -16,6 +16,7 @@
 		19F1F5A91BD3920A004ED6F6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19F1F5A71BD3920A004ED6F6 /* LaunchScreen.xib */; };
 		19F1F5B51BD3920A004ED6F6 /* Purge_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1F5B41BD3920A004ED6F6 /* Purge_iosTests.swift */; };
 		19F1F5C01BD39253004ED6F6 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1F5BF1BD39253004ED6F6 /* Player.swift */; };
+		19F1F5C21BD3A40A004ED6F6 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1F5C11BD3A40A004ED6F6 /* Bullet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		19F1F5B31BD3920A004ED6F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19F1F5B41BD3920A004ED6F6 /* Purge_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purge_iosTests.swift; sourceTree = "<group>"; };
 		19F1F5BF1BD39253004ED6F6 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		19F1F5C11BD3A40A004ED6F6 /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				19F1F5BF1BD39253004ED6F6 /* Player.swift */,
+				19F1F5C11BD3A40A004ED6F6 /* Bullet.swift */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			files = (
 				19F1F5C01BD39253004ED6F6 /* Player.swift in Sources */,
 				19F1F59F1BD3920A004ED6F6 /* GameScene.swift in Sources */,
+				19F1F5C21BD3A40A004ED6F6 /* Bullet.swift in Sources */,
 				19F1F5A11BD3920A004ED6F6 /* GameViewController.swift in Sources */,
 				19F1F59B1BD3920A004ED6F6 /* AppDelegate.swift in Sources */,
 			);

@@ -21,8 +21,8 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        ownPlayer = createPlayerAt(CGPointMake(520, 200))
-        opponentPlayer = createPlayerAt(CGPointMake(520, 400))
+        ownPlayer = createPlayerAt(CGPointMake(200, 200))
+        opponentPlayer = createPlayerAt(CGPointMake(200, 400))
         self.addChild(ownPlayer)
         self.addChild(opponentPlayer)
     }
@@ -44,8 +44,8 @@ class GameScene: SKScene {
     //MARK- Spawn functions
     func createPlayerAt(location: CGPoint) -> Player{
         let sprite = Player(imageNamed:"Spaceship")
-        sprite.xScale = 0.5
-        sprite.yScale = 0.5
+        sprite.xScale = 0.2
+        sprite.yScale = 0.2
         sprite.position = location
         
         return sprite;
