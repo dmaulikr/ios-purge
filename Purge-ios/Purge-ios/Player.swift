@@ -14,6 +14,7 @@ enum PlayerMovement: Int {
 
 class Player: SKSpriteNode {
     var health = 100
+    var playerName = "1"
     let playerMovementUnitTime = 0.2
     let playerMovementDistance: CGFloat = 10
     
@@ -50,12 +51,14 @@ class Player: SKSpriteNode {
     func shootBullet() {
         let bullet = Bullet(imageNamed: "laser")
         bullet.zRotation = zRotation
-        bullet.position = CGPointMake(position.x - size.width * sin(zRotation) + 10 , position.x + size.height * cos(zRotation) + 10)
+        bullet.position = position//CGPointMake(position.x - size.width * sin(zRotation) + 10 , position.x + size.height * cos(zRotation) + 10)
         bullet.name = "Bullet"
+        bullet.playerName = playerName
         bullet.size = CGSizeMake(20, 40)
         bullet.physicsBody = SKPhysicsBody(rectangleOfSize: bullet.size)
         bullet.physicsBody!.affectedByGravity = false
         bullet.physicsBody!.usesPreciseCollisionDetection = true
+//        bullet.physicsBody?.dynamic = false
         bullet.physicsBody?.categoryBitMask = playerCategory
         bullet.physicsBody?.collisionBitMask = playerCategory | bulletCategory
         bullet.physicsBody?.contactTestBitMask =

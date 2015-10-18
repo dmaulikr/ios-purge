@@ -12,6 +12,7 @@ class Bullet: SKSpriteNode {
     let bulletMovementUnitTime = 0.2
     let bulletMovementDistance: CGFloat = 50
 
+    var playerName = ""
     func fire() {
         runAction(SKAction.repeatActionForever( SKAction.moveByX(-bulletMovementDistance * sin(zRotation), y: bulletMovementDistance * cos(zRotation), duration: bulletMovementUnitTime)))
     }

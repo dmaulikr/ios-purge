@@ -22,6 +22,19 @@ enum ValueType: String {
     case Collide = "C"
 }
 
+extension String {
+    func toBool() -> Bool? {
+        switch self {
+        case "True", "true", "yes", "1":
+            return true
+        case "False", "false", "no", "0":
+            return false
+        default:
+            return nil
+        }
+    }
+}
+
 class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
     
     //Nodes
@@ -40,8 +53,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
         addPubnub()
         loadExplosion()
         physicsWorld.contactDelegate = self
-        ownPlayer = createPlayerAt(CGPointMake(200, 200))
-        opponentPlayer = createPlayerAt(CGPointMake(200, 400))
+        ownPlayer = createPlayerAt(CGPointMake(100, 200))
+        opponentPlayer = createPlayerAt(CGPointMake(200, 200))
         self.addChild(ownPlayer)
         self.addChild(opponentPlayer)
     }
@@ -69,6 +82,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
         sprite.position = location
         sprite.physicsBody = SKPhysicsBody(rectangleOfSize: sprite.size)
         sprite.physicsBody!.affectedByGravity = false
+//        sprite.physicsBody?.dynamic = false
         sprite.physicsBody!.usesPreciseCollisionDetection = true
         sprite.physicsBody?.categoryBitMask = playerCategory
         sprite.physicsBody?.collisionBitMask = playerCategory | bulletCategory
@@ -114,17 +128,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
     }
     
     //MARK:- Collisions
+    
     func didBeginContact(contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
         if(firstBody.node?.name != secondBody.node?.name) {
-            if(firstBody.node?.name == "Bullet") {
+            if(firstBody.node?.name == "Bullet" && (firstBody.node as! Bullet).playerName != ownPlayer.playerName) {
                 firstBody.node?.removeFromParent()
+                playExplosion(contact.contactPoint)
             }
-            else {
+            else if(secondBody.node?.name == "Bullet" && (secondBody.node as! Bullet).playerName != ownPlayer.playerName) {
                 secondBody.node?.removeFromParent()
+                playExplosion(contact.contactPoint)
             }
-            playExplosion(contact.contactPoint)
         }
     }
     
@@ -143,14 +159,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
     
     
     func client(client: PubNub!, didReceiveMessage message: PNMessageResult!) {
-        if let playerId: String = message?.data?.message["id"] as? String{
+        let dict = message?.data?.message as? [String: String]
+        print(dict)
+        if let playerId: String = dict?["id"]{
             if playerId != self.playerId {
-                if let type: String = message?.data?.message["t"] as? String {
+                if let type: String = dict?["t"]{
                     if(type=="M") {
-                        if let value: Int = message?.data?.message["v"] as? Int {
-                            opponentPlayer.move(PlayerMovement(rawValue: value)!)
+                        if let value: String = dict?["v"] {
+                            opponentPlayer.move(PlayerMovement(rawValue: value.toInt()!)!)
                         }
                     }
+                    if(type=="S") {
+                        if let value: String = dict?["v"] {
+                            opponentPlayer.shootBullet()
+                        }
+                    }
+                    if(type=="R") {
+                        if let value: String = dict?["v"] {
+                            opponentPlayer.rotate(!value.toBool()!)
+                        }
+                    }
+                    if(type=="C") {
+                        opponentPlayer.health -= 10
+                        if opponentPlayer.health <= 0 {
+                            print("I Win")
+                        }
+                    }
+
                 }
             }
         }
