@@ -40,4 +40,10 @@ class Player: SKSpriteNode {
             break
         }
     }
+    
+    func rotate(clockwise: Bool) {
+        let angle = clockwise ? -CGFloat(M_PI_4) : CGFloat(M_PI_4)
+        let action = SKAction.rotateByAngle(angle, duration: playerMovementUnitTime)
+        runAction(action)
+    }
 }

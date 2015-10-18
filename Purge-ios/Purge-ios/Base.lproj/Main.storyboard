@@ -29,7 +29,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="moveUpTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vvo-7e-kiu"/>
+                                            <action selector="moveUpTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="3Bh-E4-GWa"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2I-rN-SxI">
@@ -91,11 +91,58 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huX-7q-rFe">
+                                <rect key="frame" x="16" y="460" width="120" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIr-SV-diN">
+                                        <rect key="frame" x="60" y="30" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="ogA-Zo-1CF"/>
+                                            <constraint firstAttribute="width" constant="60" id="oqr-78-hJg"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="rotate-right">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clockwiseTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="6Bu-70-uuG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77v-6r-iWr">
+                                        <rect key="frame" x="0.0" y="30" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="CYs-42-bfB"/>
+                                            <constraint firstAttribute="width" constant="60" id="n6i-gC-vRJ"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="rotate-left">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="anticlockwiseTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="AEm-LU-UXw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="yIr-SV-diN" secondAttribute="trailing" id="1QW-Wb-tHw"/>
+                                    <constraint firstAttribute="centerY" secondItem="yIr-SV-diN" secondAttribute="centerY" id="6Gp-WL-FRx"/>
+                                    <constraint firstAttribute="centerY" secondItem="77v-6r-iWr" secondAttribute="centerY" id="E0P-j8-efM"/>
+                                    <constraint firstItem="77v-6r-iWr" firstAttribute="leading" secondItem="huX-7q-rFe" secondAttribute="leading" id="W3K-OG-jjd"/>
+                                    <constraint firstAttribute="height" constant="120" id="sYU-Ok-2LI"/>
+                                    <constraint firstAttribute="width" constant="120" id="sfp-Bb-Cws"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="60"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="sQR-Qd-c9r" secondAttribute="trailing" constant="16" id="6eR-Vg-TD4"/>
+                            <constraint firstItem="huX-7q-rFe" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" constant="16" id="Mzp-qL-0Ut"/>
                             <constraint firstItem="khH-OB-KpY" firstAttribute="top" secondItem="sQR-Qd-c9r" secondAttribute="bottom" constant="20" id="RQB-vT-tkX"/>
+                            <constraint firstItem="khH-OB-KpY" firstAttribute="top" secondItem="huX-7q-rFe" secondAttribute="bottom" constant="20" id="sfk-hs-jnf"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -108,5 +155,7 @@
         <image name="arrow-left" width="128" height="128"/>
         <image name="arrow-right" width="128" height="128"/>
         <image name="arrow-up" width="128" height="128"/>
+        <image name="rotate-left" width="64" height="64"/>
+        <image name="rotate-right" width="64" height="64"/>
     </resources>
 </document>

@@ -88,6 +88,14 @@ class GameViewController: UIViewController {
         scene?.moveOwnPlayer(.Left)
     }
     
+    @IBAction func clockwiseTapped(sender: AnyObject) {
+        scene?.rotateOwnPlayer(true)
+    }
+    
+    @IBAction func anticlockwiseTapped(sender: AnyObject) {
+        scene?.rotateOwnPlayer(false)
+    }
+    
     //MARK:- Data Receiving Methods
     
 }

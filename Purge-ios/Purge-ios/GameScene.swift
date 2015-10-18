@@ -55,4 +55,8 @@ class GameScene: SKScene {
     func moveOwnPlayer(direction: PlayerMovement) {
         ownPlayer.move(direction)
     }
+    
+    func rotateOwnPlayer(clockwise: Bool) {
+        ownPlayer.rotate(clockwise)
+    }
 }
