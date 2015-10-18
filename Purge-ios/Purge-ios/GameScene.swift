@@ -44,11 +44,15 @@ class GameScene: SKScene {
     //MARK- Spawn functions
     func createPlayerAt(location: CGPoint) -> Player{
         let sprite = Player(imageNamed:"Spaceship")
-        
         sprite.xScale = 0.5
         sprite.yScale = 0.5
         sprite.position = location
         
         return sprite;
+    }
+    
+    //MARK- Movement functions
+    func moveOwnPlayer(direction: PlayerMovement) {
+        ownPlayer.move(direction)
     }
 }

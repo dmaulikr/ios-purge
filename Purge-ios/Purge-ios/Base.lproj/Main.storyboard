@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Purge_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="maK-i9-Uhn"/>
                         <viewControllerLayoutGuide type="bottom" id="khH-OB-KpY"/>
@@ -15,11 +15,98 @@
                     <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQR-Qd-c9r">
+                                <rect key="frame" x="464" y="460" width="120" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJ5-V1-MLq">
+                                        <rect key="frame" x="40" y="0.0" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="88A-4D-peC"/>
+                                            <constraint firstAttribute="width" constant="40" id="9Iz-he-7sR"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="arrow-up">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="moveUpTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vvo-7e-kiu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2I-rN-SxI">
+                                        <rect key="frame" x="40" y="80" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="HCh-FW-Pqj"/>
+                                            <constraint firstAttribute="height" constant="40" id="uci-la-zYM"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="arrow-down">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="moveDownTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="cRJ-zA-RnZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vk5-np-OFI">
+                                        <rect key="frame" x="80" y="40" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="IzY-fa-qUO"/>
+                                            <constraint firstAttribute="width" constant="40" id="rXi-vv-rIw"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="arrow-right">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="moveRightTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="HVp-kf-joF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SF4-ma-m1j">
+                                        <rect key="frame" x="0.0" y="40" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="AoC-6V-lki"/>
+                                            <constraint firstAttribute="height" constant="40" id="qsy-st-h8C"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="arrow-left">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="moveLeftTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="rmh-9q-xMo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.35686274509999999" green="0.60784313729999995" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="SF4-ma-m1j" firstAttribute="leading" secondItem="sQR-Qd-c9r" secondAttribute="leading" id="95f-7m-dyy"/>
+                                    <constraint firstItem="wJ5-V1-MLq" firstAttribute="top" secondItem="sQR-Qd-c9r" secondAttribute="top" id="Dlj-lb-9eo"/>
+                                    <constraint firstAttribute="height" constant="120" id="FQg-er-UYb"/>
+                                    <constraint firstAttribute="width" constant="120" id="HWl-RJ-FAl"/>
+                                    <constraint firstAttribute="trailing" secondItem="vk5-np-OFI" secondAttribute="trailing" id="T9Q-qv-bD2"/>
+                                    <constraint firstAttribute="centerX" secondItem="o2I-rN-SxI" secondAttribute="centerX" id="TmR-0X-M0E"/>
+                                    <constraint firstAttribute="centerX" secondItem="wJ5-V1-MLq" secondAttribute="centerX" id="fBX-Q3-4Oo"/>
+                                    <constraint firstAttribute="centerY" secondItem="SF4-ma-m1j" secondAttribute="centerY" id="kxU-Sl-19H"/>
+                                    <constraint firstAttribute="centerY" secondItem="vk5-np-OFI" secondAttribute="centerY" id="tWo-KE-l3s"/>
+                                    <constraint firstAttribute="bottom" secondItem="o2I-rN-SxI" secondAttribute="bottom" id="yrC-WH-C8n"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="60"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="sQR-Qd-c9r" secondAttribute="trailing" constant="16" id="6eR-Vg-TD4"/>
+                            <constraint firstItem="khH-OB-KpY" firstAttribute="top" secondItem="sQR-Qd-c9r" secondAttribute="bottom" constant="20" id="RQB-vT-tkX"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow-down" width="128" height="128"/>
+        <image name="arrow-left" width="128" height="128"/>
+        <image name="arrow-right" width="128" height="128"/>
+        <image name="arrow-up" width="128" height="128"/>
+    </resources>
 </document>

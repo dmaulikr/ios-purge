@@ -27,6 +27,8 @@ extension SKNode {
 
 class GameViewController: UIViewController {
 
+    var scene: GameScene?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +45,7 @@ class GameViewController: UIViewController {
             scene.scaleMode = .AspectFill
             
             skView.presentScene(scene)
+            self.scene = scene
         }
     }
 
@@ -66,4 +69,23 @@ class GameViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+    
+    //MARK:- Actions
+    
+    @IBAction func moveUpTapped(sender: AnyObject) {
+        scene?.moveOwnPlayer(.Up)
+    }
+    
+    @IBAction func moveRightTapped(sender: AnyObject) {
+        scene?.moveOwnPlayer(.Right)
+    }
+    
+    @IBAction func moveDownTapped(sender: AnyObject) {
+        scene?.moveOwnPlayer(.Down)
+    }
+    
+    @IBAction func moveLeftTapped(sender: AnyObject) {
+        scene?.moveOwnPlayer(.Left)
+    }
+    
 }
