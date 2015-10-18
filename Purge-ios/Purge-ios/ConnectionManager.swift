@@ -27,5 +27,57 @@ enum Event: String {
 struct ConnectionManager {
     
     // MARK: Properties
-
+    
+    private static var peers: [MCPeerID] {
+        return PeerKit.session?.connectedPeers as? [MCPeerID] ?? []
+    }
+    
+    static var otherPlayers: [MCPeerID] {
+        return peers
+    }
+    
+    static var allPlayers: [MCPeerID] { return otherPlayers }
+    
+    // MARK: Start
+    
+    static func start() {
+        PeerKit.transceive("cards-against")
+    }
+    
+    // MARK: Event Handling
+    
+    static func onConnect(run: PeerBlock?) {
+        PeerKit.onConnect = run
+    }
+    
+    static func onDisconnect(run: PeerBlock?) {
+        PeerKit.onDisconnect = run
+    }
+    
+    static func onEvent(event: Event, run: ObjectBlock?) {
+        if let run = run {
+            PeerKit.eventBlocks[event.rawValue] = run
+        } else {
+            PeerKit.eventBlocks.removeValueForKey(event.rawValue)
+        }
+    }
+    
+    // MARK: Sending
+    
+    static func sendEvent(event: Event, object: [String: MPCSerializable]? = nil, toPeers peers: [MCPeerID]? = PeerKit.session?.connectedPeers as! [MCPeerID]?) {
+        var anyObject: [String: NSData]?
+        if let object = object {
+            anyObject = [String: NSData]()
+            for (key, value) in object {
+                anyObject![key] = value.mpcSerialized
+            }
+        }
+        PeerKit.sendEvent(event.rawValue, object: anyObject, toPeers: peers)
+    }
+    
+    static func sendEventForEach(event: Event, objectBlock: () -> ([String: MPCSerializable])) {
+        for peer in ConnectionManager.peers {
+            ConnectionManager.sendEvent(event, object: objectBlock(), toPeers: [peer])
+        }
+    }
 }

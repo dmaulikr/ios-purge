@@ -25,16 +25,15 @@ class GameScene: SKScene {
         opponentPlayer = createPlayerAt(CGPointMake(520, 400))
         self.addChild(ownPlayer)
         self.addChild(opponentPlayer)
+        ConnectionManager.start()
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
-        for touch in (touches as! Set<UITouch>) {
-            let location = touch.locationInNode(self)
-            ownPlayer = createPlayerAt(location)
-            addChild(ownPlayer)
-            }
+
+        let attr = MPCAttributedString(attributedString: NSAttributedString(string: "What is this"))
+        ConnectionManager.sendEvent(Event.Answer, object: ["Aashish": attr] , toPeers: ConnectionManager.allPlayers)
     }
    
     override func update(currentTime: CFTimeInterval) {
@@ -51,4 +50,15 @@ class GameScene: SKScene {
         
         return sprite;
     }
+    
+    
+    // MARK: Multipeer
+    
+    private func setupMultipeerEventHandlers() {
+        // Answer
+        ConnectionManager.onEvent(.Answer) { peer, object in
+            println("Answer event")
+            println(object)
+            }
+        }
 }

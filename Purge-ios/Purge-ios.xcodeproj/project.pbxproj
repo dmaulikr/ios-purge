@@ -17,6 +17,8 @@
 		19F1F5B51BD3920A004ED6F6 /* Purge_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1F5B41BD3920A004ED6F6 /* Purge_iosTests.swift */; };
 		19F1F5C01BD39253004ED6F6 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1F5BF1BD39253004ED6F6 /* Player.swift */; };
 		39FC56611BD3A4680098D615 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC56601BD3A4680098D615 /* ConnectionManager.swift */; };
+		39FC56631BD3A7FA0098D615 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39FC56621BD3A7FA0098D615 /* MultipeerConnectivity.framework */; };
+		39FC56651BD3A84B0098D615 /* MPCAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FC56641BD3A84B0098D615 /* MPCAttributedString.swift */; };
 		6D1703E5948744EC9CE90475 /* Pods_Purge_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AAF5C30187A600F2169B41 /* Pods_Purge_ios.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,8 @@
 		19F1F5BF1BD39253004ED6F6 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		22AAF5C30187A600F2169B41 /* Pods_Purge_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Purge_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39FC56601BD3A4680098D615 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
+		39FC56621BD3A7FA0098D615 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		39FC56641BD3A84B0098D615 /* MPCAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCAttributedString.swift; sourceTree = "<group>"; };
 		5EAC494A68C3D980F2FF28DB /* Pods-Purge-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Purge-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Purge-ios/Pods-Purge-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		F214748A55C2593AC6AE8235 /* Pods-Purge-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Purge-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-Purge-ios/Pods-Purge-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39FC56631BD3A7FA0098D615 /* MultipeerConnectivity.framework in Frameworks */,
 				6D1703E5948744EC9CE90475 /* Pods_Purge_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +140,7 @@
 			children = (
 				19F1F5BF1BD39253004ED6F6 /* Player.swift */,
 				39FC56601BD3A4680098D615 /* ConnectionManager.swift */,
+				39FC56641BD3A84B0098D615 /* MPCAttributedString.swift */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -151,6 +157,7 @@
 		855151A26E78B4DA43E0CDC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39FC56621BD3A7FA0098D615 /* MultipeerConnectivity.framework */,
 				22AAF5C30187A600F2169B41 /* Pods_Purge_ios.framework */,
 			);
 			name = Frameworks;
@@ -311,6 +318,7 @@
 				39FC56611BD3A4680098D615 /* ConnectionManager.swift in Sources */,
 				19F1F5C01BD39253004ED6F6 /* Player.swift in Sources */,
 				19F1F59F1BD3920A004ED6F6 /* GameScene.swift in Sources */,
+				39FC56651BD3A84B0098D615 /* MPCAttributedString.swift in Sources */,
 				19F1F5A11BD3920A004ED6F6 /* GameViewController.swift in Sources */,
 				19F1F59B1BD3920A004ED6F6 /* AppDelegate.swift in Sources */,
 			);
