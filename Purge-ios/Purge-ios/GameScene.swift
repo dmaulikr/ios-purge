@@ -82,7 +82,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
         sprite.position = location
         sprite.physicsBody = SKPhysicsBody(rectangleOfSize: sprite.size)
         sprite.physicsBody!.affectedByGravity = false
-//        sprite.physicsBody?.dynamic = false
         sprite.physicsBody!.usesPreciseCollisionDetection = true
         sprite.physicsBody?.categoryBitMask = playerCategory
         sprite.physicsBody?.collisionBitMask = playerCategory | bulletCategory
@@ -98,6 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
     }
     
     func rotateOwnPlayer(clockwise: Bool) {
+        client.publish("{\"id\":\"\(playerId)\",\"t\":\"R\",\"v\":\"\(!clockwise)\"}", toChannel: "Channel-m5odp0zna", compressed: false, withCompletion: nil)
         ownPlayer.rotate(clockwise)
     }
     
@@ -133,13 +133,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PNObjectEventListener {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
         if(firstBody.node?.name != secondBody.node?.name) {
-            if(firstBody.node?.name == "Bullet" && (firstBody.node as! Bullet).playerName != ownPlayer.playerName) {
-                firstBody.node?.removeFromParent()
-                playExplosion(contact.contactPoint)
+            if(firstBody.node?.name == "Bullet") {
+                if((firstBody.node as! Bullet).playerName != ownPlayer.playerName) {//other bullet
+                    if((secondBody.node as! Player).playerName == ownPlayer.playerName) {
+                        //PUSH
+                        client.publish("{\"id\":\"\(playerId)\",\"t\":\"C\",\"v\":\"0\"}", toChannel: "Channel-m5odp0zna", compressed: false, withCompletion: nil)
+                        firstBody.node?.removeFromParent()
+                        playExplosion(contact.contactPoint)
+                    }
+                }
+                else {
+                    if((secondBody.node as! Player).playerName != ownPlayer.playerName) {
+                        firstBody.node?.removeFromParent()
+                        playExplosion(contact.contactPoint)
+                    }
+                }
             }
-            else if(secondBody.node?.name == "Bullet" && (secondBody.node as! Bullet).playerName != ownPlayer.playerName) {
-                secondBody.node?.removeFromParent()
-                playExplosion(contact.contactPoint)
+            else {
+                if((secondBody.node as! Bullet).playerName != ownPlayer.playerName) {//other bullet
+                    if((firstBody.node as! Player).playerName == ownPlayer.playerName) {
+                        //PUSH
+                        client.publish("{\"id\":\"\(playerId)\",\"t\":\"C\",\"v\":\"0\"}", toChannel: "Channel-m5odp0zna", compressed: false, withCompletion: nil)
+                        secondBody.node?.removeFromParent()
+                        playExplosion(contact.contactPoint)
+                    }
+                }
+                else {
+                    if((firstBody.node as! Player).playerName != ownPlayer.playerName) {
+                        secondBody.node?.removeFromParent()
+                        playExplosion(contact.contactPoint)
+                    }
+                }
             }
         }
     }
