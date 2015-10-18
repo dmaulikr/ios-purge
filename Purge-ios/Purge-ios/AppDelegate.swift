@@ -9,10 +9,26 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, PNObjectEventListener {
 
     var window: UIWindow?
 
+    var client : PubNub
+    var config : PNConfiguration
+    
+    override init() {
+        config = PNConfiguration(publishKey: "pub-c-85f450ad-16a7-4434-b5b0-fef7c11e6839", subscribeKey: "sub-c-40615bee-7599-11e5-9611-02ee2ddab7fe")
+        client = PubNub.clientWithConfiguration(config)
+        client.subscribeToChannels(["Channel-m5odp0zna"], withPresence: false)
+        client.publish("Swift+PubNub!", toChannel: "Channel-m5odp0zna", compressed: false, withCompletion: nil)
+        
+        super.init()
+        client.addListener(self)
+    }
+    
+    func client(client: PubNub!, didReceiveMessage message: PNMessageResult!) {
+        println(message.data)
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
